@@ -58,7 +58,7 @@
                                         <i class="fss fa-pencil-alt"></i>
                                     </a>
 
-                                    <form action="{{ route('cateries.destroy', $category->id) }}" method="post" class="float-left">
+                                    <form action="{{ route('categories.destroy', $category->id) }}" method="post" class="float-left">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Подтвердить удаление')">
