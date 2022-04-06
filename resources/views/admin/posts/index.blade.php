@@ -7,7 +7,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Список тегов</h1>
+                        <h1>Список постов</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -25,7 +25,7 @@
             <!-- Default box -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Список тегов</h3>
+                    <h3 class="card-title">Список постов</h3>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                             <i class="fas fa-minus"></i>
@@ -36,29 +36,33 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <a href="{{ route('tags.create') }}">Добавить тег</a>
-                    @if (count($tags))
+                    <a href="{{ route('posts.create') }}">Добавить пост</a>
+                    @if (count($posts))
                         <table class="table table-bordered">
                             <thead>
                             <tr>
                                 <th style="width: 10px">#</th>
                                 <th>Наименование</th>
-                                <th>Slug</th>
+                                <th>Категория</th>
+                                <th>Теги</th>
+                                <th>Дата</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($tags as $tag)
+                            @foreach($posts as $post)
                             <tr>
-                                <td>{{ $tag->id }}</td>
-                                <td>{{ $tag->title }}</td>
-                                <td>{{ $tag->slug }}</td>
+                                <td>{{ $post->id }}</td>
+                                <td>{{ $post->title }}</td>
+                                <td>{{ $post->category->title }}</td>
+                                <td>{{ $post->tags }}</td>
+                                <td>{{ $post->updated_at }}</td>
                                 <td>
-                                    <a href="{{ route('tags.edit', $tag->id) }}" class="btn btn-info btn-sm float-left mr-1">
+                                    <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-info btn-sm float-left mr-1">
                                         <i class="fss fa-pencil-alt"></i>
                                     </a>
 
-                                    <form action="{{ route('tags.destroy', $tag->id) }}" method="post" class="float-left">
+                                    <form action="{{ route('posts.destroy', $post->id) }}" method="post" class="float-left">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Подтвердить удаление')">
@@ -70,11 +74,11 @@
                             </tbody>
                         </table>
                     @else
-                        <div>Тегов пока нет...</div>
+                        <div>Постов пока нет...</div>
                     @endif
                 </div>
                 <div class="card-footer clearfix">
-                    {{ $tags->links() }}
+                    {{ $posts->links() }}
                 </div>
 
 
