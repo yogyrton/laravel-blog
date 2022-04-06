@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class TagController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::query()->paginate(10);
-        return view('admin/categories.index', compact('categories'));
+        $tags = Tag::query()->paginate(10);
+        return view('admin/tags.index', compact('tags'));
     }
 
     /**
@@ -26,7 +26,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.categories.create');
+        return view('admin.tags.create');
     }
 
     /**
@@ -40,9 +40,9 @@ class CategoryController extends Controller
         $request->validate([
            'title' => 'required|min:5|max:50',
         ]);
-        Category::query()->create($request->all());
-        $request->session()->flash('success', 'Категория добавлена');
-        return redirect()->route('categories.index');
+        Tag::query()->create($request->all());
+        $request->session()->flash('success', 'Тэг добавлен');
+        return redirect()->route('tags.index');
     }
 
     /**
@@ -53,8 +53,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::query()->find($id);
-        return view('admin.categories.edit', compact('category'));
+        $tag = Tag::query()->find($id);
+        return view('admin.tags.edit', compact('tag'));
     }
 
     /**
@@ -66,29 +66,27 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $category = Category::query()->find($id);
+        $tag = Tag::query()->find($id);
         $request->validate([
             'title' => 'required|min:5|max:50',
         ]);
 
-        $category->update($request->all());
+        $tag->update($request->all());
 
-        $request->session()->flash('success', 'Категория изменена');
-        return redirect()->route('categories.index');
+        $request->session()->flash('success', 'Тэг изменен');
+        return redirect()->route('tags.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
-        /*$category = Category::query()->find($id);
-        $category->delete();*/
 
-        Category::destroy($id);
-        return redirect()->route('categories.index');
+        Tag::destroy($id);
+        return redirect()->route('tags.index');
     }
 }

@@ -25,7 +25,7 @@
             <!-- Default box -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Список категорий</h3>
+                    <h3 class="card-title">Список тегов</h3>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                             <i class="fas fa-minus"></i>
@@ -36,8 +36,8 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <a href="{{ route('categories.create') }}">Добавить категорию</a>
-                    @if (count($categories))
+                    <a href="{{ route('tags.create') }}">Добавить тег</a>
+                    @if (count($tags))
                         <table class="table table-bordered">
                             <thead>
                             <tr>
@@ -48,17 +48,17 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($categories as $category)
+                            @foreach($tags as $tag)
                             <tr>
-                                <td>{{ $category->id }}</td>
-                                <td>{{ $category->title }}</td>
-                                <td>{{ $category->slug }}</td>
+                                <td>{{ $tag->id }}</td>
+                                <td>{{ $tag->title }}</td>
+                                <td>{{ $tag->slug }}</td>
                                 <td>
-                                    <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-info btn-sm float-left mr-1">
+                                    <a href="{{ route('tags.edit', $tag->id) }}" class="btn btn-info btn-sm float-left mr-1">
                                         <i class="fss fa-pencil-alt"></i>
                                     </a>
 
-                                    <form action="{{ route('categories.destroy', $category->id) }}" method="post" class="float-left">
+                                    <form action="{{ route('tags.destroy', $tag->id) }}" method="post" class="float-left">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Подтвердить удаление')">
@@ -70,11 +70,11 @@
                             </tbody>
                         </table>
                     @else
-                        <div>Категорий пока нет...</div>
+                        <div>Тегов пока нет...</div>
                     @endif
                 </div>
                 <div class="card-footer clearfix">
-                    {{ $categories->links() }}
+                    {{ $tags->links() }}
                 </div>
 
 
