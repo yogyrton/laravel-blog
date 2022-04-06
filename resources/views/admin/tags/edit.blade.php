@@ -1,4 +1,4 @@
-@extends('admin.layouts.layuot')
+@extends('admin.layouts.layout')
 
 @section('content')
     <div class="content-wrapper">
@@ -25,8 +25,7 @@
             <!-- Default box -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Title</h3>
-
+                    <h3 class="card-title">Редактировать тэг</h3>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                             <i class="fas fa-minus"></i>
@@ -36,9 +35,21 @@
                         </button>
                     </div>
                 </div>
-                <div class="card-body">
-                    Start creating your amazing application!
-                </div>
+                <form action="{{ route('tags.update', $tag->id) }}" method="post">
+                    @csrf
+                    @method('PUT')
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Название категории</label>
+                            <input type="text" class="form-control" name="title" id="text" value="{{ $tag->title }}">
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">Изменить</button>
+                    </div>
+                </form>
+
                 <!-- /.card-body -->
                 <div class="card-footer">
                     Footer
