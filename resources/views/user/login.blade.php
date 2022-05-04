@@ -17,6 +17,7 @@
     <!-- /.login-logo -->
     <div class="card">
         <div class="card-body login-card-body">
+            <a class="nav-link" href="{{ route('home') }}">Главная</a>
             <p class="login-box-msg">Войти</p>
 
             @if ($errors->any())

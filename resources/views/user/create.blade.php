@@ -18,6 +18,7 @@
 
 
     <div class="card">
+        <a class="nav-link" href="{{ route('home') }}">Главная</a>
         <div class="card-body register-card-body">
             <p class="login-box-msg"><b>Регистрация нового пользователя</b></p>
 

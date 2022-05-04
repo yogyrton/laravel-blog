@@ -63,6 +63,6 @@ class UserController extends Controller
     public function logOut()
     {
         Auth::logout();
-        return redirect()->route('login.create');
+        return redirect()->home();
     }
 }
