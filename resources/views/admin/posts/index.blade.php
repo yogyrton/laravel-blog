@@ -35,6 +35,12 @@
                         </button>
                     </div>
                 </div>
+
+                @if (session()->has('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
                 <div class="card-body">
                     <a href="{{ route('posts.create') }}">Добавить пост</a>
                     @if (count($posts))
@@ -55,7 +61,7 @@
                                 <td>{{ $post->id }}</td>
                                 <td>{{ $post->title }}</td>
                                 <td>{{ $post->category->title }}</td>
-                                <td>{{ $post->tags }}</td>
+                                <td>{{ $post->tags->pluck('title')->join(', ') }}</td>
                                 <td>{{ $post->updated_at }}</td>
                                 <td>
                                     <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-info btn-sm float-left mr-1">

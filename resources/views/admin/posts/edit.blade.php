@@ -21,8 +21,17 @@
 
         <!-- Main content -->
         <section class="content">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+        @endif
 
-            <!-- Default box -->
+        <!-- Default box -->
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Редактировать пост</h3>
@@ -40,13 +49,24 @@
                     @method('PUT')
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Название поста</label>
+                            <label for="exampleInputEmail1">Редактировать пост</label>
                             <input type="text" class="form-control" name="title" id="text" value="{{ $post->title }}">
                         </div>
-                    </div>
 
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">Изменить</button>
+                        <div class="form-group">
+                            <label for="description">Редактировать цитату</label>
+                            <textarea type="text" class="form-control" name="description" id="description" rows="5">{{ $post->description }}</textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="content">Редактировать контент</label>
+                            <textarea type="text" class="form-control" name="content" id="content" rows="5"> {{ $post->content }}</textarea>
+                        </div>
+
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Сохранить</button>
+                        </div>
                     </div>
                 </form>
 

@@ -24,3 +24,4 @@ mix.scripts([
 
 mix.copyDirectory('resources/assets/admin/plugins/fontawesome-free/webfonts', 'public/assets/admin/webfonts');
 mix.copyDirectory('resources/assets/admin/img', 'public/assets/admin/img');
+

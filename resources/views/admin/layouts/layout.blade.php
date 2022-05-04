@@ -313,6 +313,33 @@
 
 <script src="../../../assets/admin/js/admin.js"></script>
 
+<script src="{{ asset('assets/admin/ckeditor/build/ckeditor.js') }}"></script>
+<script src="{{ asset('assets/admin/ckfinder/ckfinder.js') }}"></script>
+<script>
+
+    ClassicEditor
+        .create( document.querySelector( '#content' ), {
+            ckfinder: {
+                uploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json'
+            },
+            toolbar: [ 'ckfinder', 'imageUpload', '|', 'heading', '|', 'bold', 'italic', '|', 'undo', 'redo' ]
+        } )
+        .catch( function( error ) {
+            console.error( error );
+        } );
+
+
+        ClassicEditor
+        .create( document.querySelector( '#description' ), {
+        toolbar: ['heading', '|', 'bold', 'italic', '|', 'undo', 'redo' ]
+    } )
+        .catch( function( error ) {
+        console.error( error );
+    } );
+
+</script>
+</script>
+
 </body>
 </html>
 
